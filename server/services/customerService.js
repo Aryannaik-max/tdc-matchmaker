@@ -1,4 +1,8 @@
 const customers = require('../data/customers.json');
+const fs = require('fs')
+const path = require('path')
+
+const customersPath = path.join(__dirname, '../data/customers.json')
 
 class CustomerService {
     async getAllCustomers() {
@@ -19,6 +23,34 @@ class CustomerService {
             throw error;
         }
     }
+
+    async updateCustomer(id, updates) {
+        try {
+            const customers = JSON.parse(fs.readFileSync(customersPath, 'utf-8'))
+            const idx = customers.findIndex(c => c.id === id)
+            if (idx === -1) return null
+            customers[idx] = { ...customers[idx], ...updates }
+            fs.writeFileSync(customersPath, JSON.stringify(customers, null, 2))
+            return customers[idx]
+        }catch (error) {
+            console.log(`Error in updateCustomer Service: ${error}`);
+            throw error;
+        }
+  }
+
+  async saveNotes(customerId, notes) {
+    try {
+        const customers = JSON.parse(fs.readFileSync(customersPath, 'utf-8'))
+        const idx = customers.findIndex(c => c.id === customerId)
+        if (idx === -1) return null
+        customers[idx].notes = notes
+        fs.writeFileSync(customersPath, JSON.stringify(customers, null, 2))
+        return customers[idx]
+    }catch (error) {
+        console.log(`Error in saveNotes Service: ${error}`);
+        throw error;
+    }
+ }
 }
 
 module.exports = CustomerService;

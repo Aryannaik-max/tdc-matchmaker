@@ -12,6 +12,13 @@
   --font-mono: var(--font-geist-mono);
 }
 
+@layer utilities {
+  .notched-card {
+    mask: radial-gradient(40px at 40px 40px,#0000 98%,#000) -40px -40px;
+    -webkit-mask: radial-gradient(40px at 40px 40px,#0000 98%,#000) -40px -40px;
+  }
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;

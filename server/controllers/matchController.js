@@ -9,8 +9,8 @@ const getMatches = async (req, res) => {
         const customer = await customerService.getCustomerById(req.params.customerId);
         if (!customer) {
             return res.status(404).json({
-            success: false,
-            message: "Customer not found"
+                success: false,
+                message: "Customer not found"
             });
         }
         const matches = await matchService.getMatches(customer);
@@ -20,7 +20,7 @@ const getMatches = async (req, res) => {
             message: 'Matches fetched successfully',
             err: {}
         });
-    }catch (error) {
+    } catch (error) {
         console.log(`Error in getMatches Controller: ${error}`);
         res.status(500).json({
             data: {},
@@ -68,7 +68,56 @@ const sendMatch = async (req, res) => {
     }
 }
 
+const getSentMatches = async (req, res) => {
+    try {
+        const customer = await customerService.getCustomerById(req.params.customerId);
+        if (!customer) {
+            return res.status(404).json({
+                success: false,
+                message: 'Customer not found'
+            });
+        }
+
+        const pool = require('../data/pool.json');
+        const sentProfiles = (customer.sentMatches || [])
+            .map(id => pool.find(p => p.id === id))
+            .filter(Boolean)
+            .map(p => matchService.getProfileSummary(p));
+
+        res.status(200).json({
+            data: sentProfiles,
+            success: true,
+            message: 'Sent matches fetched successfully',
+            err: {}
+        });
+    } catch (error) {
+        console.log(`Error in getSentMatches Controller: ${error}`);
+        res.status(500).json({
+            data: {},
+            success: false,
+            message: 'An error occurred while fetching sent matches',
+            err: {error}
+        });
+    }
+}
+
+const getPoolProfile = async (req, res) => {
+  try {
+    const pool = require('../data/pool.json')
+    const profile = pool.find(p => p.id === req.params.profileId)
+    if (!profile) {
+      return res.status(404).json({ success: false, message: 'Profile not found' })
+    }
+    res.status(200).json({ data: profile, success: true, err: {} })
+  } catch (error) {
+    res.status(500).json({ success: false, message: 'Error fetching pool profile', err: { error } })
+  }
+}
+
+
 module.exports = {
     getMatches,
-    sendMatch
+    sendMatch,
+    getSentMatches,
+    getPoolProfile
 };

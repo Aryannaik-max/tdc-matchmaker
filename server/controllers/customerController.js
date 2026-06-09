@@ -47,7 +47,42 @@ const getCustomerById = async (req, res) => {
     }
 }
 
+const saveNotes = async (req, res) => {
+    try {
+        const { customerId } = req.params;
+        const { notes } = req.body;
+        if (!customerId || !notes) {
+            return res.status(400).json({
+                success: false,
+                message: 'customerId and notes are required'
+            });
+        }
+        const updatedCustomer = await customerService.saveNotes(customerId, notes);
+        if (!updatedCustomer) {
+            return res.status(404).json({
+                success: false,
+                message: 'Customer not found'
+            });
+        }
+        res.status(200).json({
+            data: updatedCustomer,
+            success: true,
+            message: 'Notes saved successfully',
+            err: {}
+        });
+    }catch (error) {
+        console.log(`Error in saveNotes Controller: ${error}`);
+        res.status(500).json({
+            data: {},
+            success: false,
+            message: 'An error occurred while saving notes',
+            err: {error}
+        });
+    }
+}
+
 module.exports = {
     getAllCustomers,
-    getCustomerById
+    getCustomerById,
+    saveNotes
 };

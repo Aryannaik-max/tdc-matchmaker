@@ -28,6 +28,7 @@
     "openToRelocate": "Yes",
     "openToPets": "Maybe",
     "status": "Match Sent",
+    "sentMatches": [],
     "notes": ""
   },
   {
@@ -59,6 +60,10 @@
     "openToRelocate": "No",
     "openToPets": "Yes",
     "status": "Match Sent",
+    "sentMatches": [
+      "3cb16b6e-2862-4035-94ff-c5833815ac9b",
+      "4f89d825-5a3b-48c3-ab14-5dba4d70b024"
+    ],
     "notes": ""
   },
   {
@@ -90,6 +95,10 @@
     "openToRelocate": "No",
     "openToPets": "Maybe",
     "status": "Matched",
+    "sentMatches": [
+      "dcd4820f-bb3e-4c9f-bbbe-f53d462e692d",
+      "b44de3aa-96c5-46cc-82aa-acffc1823c0b"
+    ],
     "notes": ""
   },
   {
@@ -121,6 +130,11 @@
     "openToRelocate": "Yes",
     "openToPets": "No",
     "status": "Match Sent",
+    "sentMatches": [
+      "bcf4b373-9d61-44ac-9a56-7c9245e89048",
+      "2db391b5-aa2b-420e-b11d-244a971ffe8f",
+      "5d8a4d04-5bf5-4325-af15-f6c414601536"
+    ],
     "notes": ""
   },
   {
@@ -152,6 +166,13 @@
     "openToRelocate": "No",
     "openToPets": "No",
     "status": "On Hold",
+    "sentMatches": [
+      "dcd4820f-bb3e-4c9f-bbbe-f53d462e692d",
+      "053e43a8-333b-4ccd-846b-771a65ec6d03",
+      "097ddfc9-1fa6-4ed9-9728-938d5243c2fc",
+      "68e43fb0-27c3-4e19-adf4-1dd7f25dc64a",
+      "abff4762-85e3-48ad-9721-c0f3abe0e41c"
+    ],
     "notes": ""
   },
   {
@@ -183,6 +204,9 @@
     "openToRelocate": "Yes",
     "openToPets": "Maybe",
     "status": "Active",
+    "sentMatches": [
+      "da55f996-8e0b-4637-942b-610ad80b0782"
+    ],
     "notes": ""
   },
   {
@@ -214,6 +238,7 @@
     "openToRelocate": "No",
     "openToPets": "Yes",
     "status": "Active",
+    "sentMatches": [],
     "notes": ""
   },
   {
@@ -245,6 +270,9 @@
     "openToRelocate": "Yes",
     "openToPets": "No",
     "status": "Match Sent",
+    "sentMatches": [
+      "ae70c306-ade9-4311-834b-fb7d900cb11e"
+    ],
     "notes": ""
   },
   {
@@ -276,6 +304,7 @@
     "openToRelocate": "Maybe",
     "openToPets": "Maybe",
     "status": "On Hold",
+    "sentMatches": [],
     "notes": ""
   },
   {
@@ -307,6 +336,7 @@
     "openToRelocate": "Maybe",
     "openToPets": "Maybe",
     "status": "Match Sent",
+    "sentMatches": [],
     "notes": ""
   },
   {
@@ -338,6 +368,7 @@
     "openToRelocate": "No",
     "openToPets": "Yes",
     "status": "On Hold",
+    "sentMatches": [],
     "notes": ""
   },
   {
@@ -369,6 +400,7 @@
     "openToRelocate": "Yes",
     "openToPets": "Yes",
     "status": "Match Sent",
+    "sentMatches": [],
     "notes": ""
   },
   {
@@ -400,6 +432,7 @@
     "openToRelocate": "Yes",
     "openToPets": "Yes",
     "status": "Active",
+    "sentMatches": [],
     "notes": ""
   },
   {
@@ -431,6 +464,7 @@
     "openToRelocate": "Yes",
     "openToPets": "Maybe",
     "status": "Active",
+    "sentMatches": [],
     "notes": ""
   },
   {
@@ -461,6 +495,7 @@
     "wantKids": "No",
     "openToRelocate": "Yes",
     "openToPets": "Yes",
+    "sentMatches": [],
     "status": "Match Sent",
     "notes": ""
   }

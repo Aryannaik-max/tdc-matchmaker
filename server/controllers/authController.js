@@ -5,7 +5,6 @@ const login = (req, res) => {
     try {
       const { username, password } = req.body;
       const result = authService.login(username, password);
-
       return res.status(200).json({
         data: result,
         success: true,
