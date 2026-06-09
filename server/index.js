@@ -6,7 +6,13 @@ const PORT = process.env.PORT || 5000;
 const routes = require("./routes");
 
 const startServer = () => {
-    app.use(cors());
+    app.use(cors({
+        origin: [
+            'https://tdc-matchmaker-tau.vercel.app',
+            'http://localhost:3000'
+        ],
+        credentials: true
+    }));
     app.use(express.json());
     app.use(express.urlencoded({ extended: true }));
 
