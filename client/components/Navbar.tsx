@@ -24,30 +24,18 @@ export default function Navbar() {
     : 'AN'
 
   return (
-    <nav
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        padding: '0 28px',
-        height: 52,
-        background: '#fff',
-        borderBottom: '0.5px solid rgba(0,0,0,0.08)',
-        position: 'sticky',
-        top: 0,
-        zIndex: 10,
-      }}
-    >
+    <nav className="flex items-center justify-between px-7 h-[52px] bg-white border-b border-black/[0.08] sticky top-0 z-10">
+      
       {/* logo */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-        <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#3D1A2E' }} />
-        <span style={{ fontSize: 15, fontWeight: 500, color: '#3D1A2E', letterSpacing: '0.02em' }}>
+      <div className="flex items-center gap-2">
+        <div className="w-2 h-2 rounded-full bg-[#3D1A2E]" />
+        <span className="text-[15px] font-medium text-[#3D1A2E] tracking-[0.02em]">
           TDC Matchmaker
         </span>
       </div>
 
       {/* nav links */}
-      <div style={{ display: 'flex', gap: 4 }}>
+      <div className="flex gap-1">
         {navItems.map(item => {
           const isActive = pathname?.startsWith(item.href) && item.href !== '/dashboard'
             ? pathname === item.href
@@ -56,23 +44,13 @@ export default function Navbar() {
             <button
               key={item.label}
               onClick={() => router.push(item.href)}
-              style={{
-                padding: '6px 14px',
-                borderRadius: 8,
-                fontSize: 13,
-                border: 'none',
-                cursor: 'pointer',
-                background: isActive ? '#f3f2ee' : 'transparent',
-                color: isActive ? '#1a1a18' : '#6b6b65',
-                fontWeight: isActive ? 500 : 400,
-                transition: 'all 0.15s',
-              }}
-              onMouseEnter={e => {
-                if (!isActive) e.currentTarget.style.background = '#f8f7f4'
-              }}
-              onMouseLeave={e => {
-                if (!isActive) e.currentTarget.style.background = 'transparent'
-              }}
+              className={`
+                px-[14px] py-[6px] rounded-lg text-[13px] border-none cursor-pointer transition-all duration-150
+                ${isActive
+                  ? 'bg-[#f3f2ee] text-[#1a1a18] font-medium'
+                  : 'bg-transparent text-[#6b6b65] font-normal hover:bg-[#f8f7f4]'
+                }
+              `}
             >
               {item.label}
             </button>
@@ -81,21 +59,21 @@ export default function Navbar() {
       </div>
 
       {/* right — date + bell + user */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-        <span style={{ fontSize: 13, color: '#9b9b93' }}>
+      <div className="flex items-center gap-3">
+        <span className="text-[13px] text-[#9b9b93]">
           {new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })}
         </span>
-        <div style={{ width: 0.5, height: 20, background: 'rgba(0,0,0,0.1)' }} />
+        <div className="w-px h-5 bg-black/10" />
         <button
-          style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#9b9b93', fontSize: 18, display: 'flex', alignItems: 'center' }}
+          className="bg-transparent border-none cursor-pointer text-[#9b9b93] text-lg flex items-center"
           aria-label="Notifications"
         >
           <i className="ti ti-bell" aria-hidden="true" />
         </button>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-          <div style={{ textAlign: 'right' }}>
-            <div style={{ fontSize: 12, fontWeight: 500, color: '#1a1a18' }}>{user.name || 'Matchmaker'}</div>
-            <div style={{ fontSize: 11, color: '#9b9b93' }}>{user.role || 'Senior Matchmaker'}</div>
+        <div className="flex items-center gap-2">
+          <div className="text-right">
+            <div className="text-xs font-medium text-[#1a1a18]">{user.name || 'Matchmaker'}</div>
+            <div className="text-[11px] text-[#9b9b93]">{user.role || 'Senior Matchmaker'}</div>
           </div>
           <div
             onClick={() => {
@@ -104,19 +82,7 @@ export default function Navbar() {
               window.location.href = '/login'
             }}
             title="Logout"
-            style={{
-              width: 32,
-              height: 32,
-              borderRadius: '50%',
-              background: '#3D1A2E',
-              color: '#fff',
-              fontSize: 12,
-              fontWeight: 500,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              cursor: 'pointer',
-            }}
+            className="w-8 h-8 rounded-full bg-[#3D1A2E] text-white text-xs font-medium flex items-center justify-center cursor-pointer"
           >
             {initials}
           </div>

@@ -23,86 +23,61 @@ const avatarColors = [
 export default function CustomerCard({ customer, onClick }: Props) {
   const initials = (customer.firstName?.[0] || '') + (customer.lastName?.[0] || '')
   const status = statusConfig[customer.status] || { bg: '#F1EFE8', color: '#5F5E5A', label: customer.status }
-  // deterministic color from name
   const colorIdx = (customer.firstName?.charCodeAt(0) || 0) % avatarColors.length
   const av = avatarColors[colorIdx]
 
   return (
     <div
       onClick={onClick}
-      style={{
-        background: '#fff',
-        border: '0.5px solid rgba(0,0,0,0.07)',
-        borderRadius: 12,
-        padding: 16,
-        cursor: 'pointer',
-        transition: 'border-color 0.15s',
-      }}
-      onMouseEnter={e => (e.currentTarget.style.borderColor = 'rgba(0,0,0,0.15)')}
-      onMouseLeave={e => (e.currentTarget.style.borderColor = 'rgba(0,0,0,0.07)')}
+      className="bg-white border border-black/[0.07] rounded-xl p-4 cursor-pointer transition-colors duration-150 hover:border-black/[0.15]"
     >
       {/* card top */}
-      <div style={{ display: 'flex', alignItems: 'flex-start', gap: 12, marginBottom: 12 }}>
+      <div className="flex items-start gap-3 mb-3">
         {/* avatar */}
-        <div style={{
-          width: 38, height: 38, borderRadius: 10, flexShrink: 0,
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          fontSize: 13, fontWeight: 500,
-          background: av.bg, color: av.color,
-        }}>
+        <div
+          className="w-[38px] h-[38px] rounded-[10px] flex-shrink-0 flex items-center justify-center text-[13px] font-medium"
+          style={{ background: av.bg, color: av.color }}
+        >
           {initials}
         </div>
+
         {/* name + role */}
-        <div style={{ flex: 1, minWidth: 0 }}>
-          <div style={{ fontSize: 14, fontWeight: 500, color: '#1a1a18', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+        <div className="flex-1 min-w-0">
+          <div className="text-[14px] font-medium text-[#1a1a18] truncate">
             {customer.firstName} {customer.lastName}
           </div>
-          <div style={{ fontSize: 12, color: '#6b6b65', marginTop: 1, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+          <div className="text-[12px] text-[#6b6b65] mt-0.5 truncate">
             {customer.designation} · {customer.company}
           </div>
         </div>
+
         {/* status badge */}
-        <span style={{
-          fontSize: 10, fontWeight: 500,
-          padding: '3px 8px', borderRadius: 99,
-          background: status.bg, color: status.color,
-          whiteSpace: 'nowrap', flexShrink: 0,
-        }}>
+        <span
+          className="text-[10px] font-medium px-2 py-0.5 rounded-full whitespace-nowrap flex-shrink-0"
+          style={{ background: status.bg, color: status.color }}
+        >
           {status.label}
         </span>
       </div>
 
       {/* meta row */}
-      <div style={{ display: 'flex', gap: 12, fontSize: 12, color: '#6b6b65', marginBottom: 14 }}>
-        <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-          <i className="ti ti-map-pin" aria-hidden="true" style={{ fontSize: 13 }} />
+      <div className="flex gap-3 text-[12px] text-[#6b6b65] mb-3.5">
+        <span className="flex items-center gap-1">
+          <i className="ti ti-map-pin text-[13px]" aria-hidden="true" />
           {customer.city}
         </span>
-        <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-          <i className="ti ti-user" aria-hidden="true" style={{ fontSize: 13 }} />
+        <span className="flex items-center gap-1">
+          <i className="ti ti-user text-[13px]" aria-hidden="true" />
           {customer.age} yrs
         </span>
         <span>{customer.maritalStatus}</span>
       </div>
 
-      {/* action buttons */}
-      <div style={{
-        display: 'flex', gap: 6,
-        borderTop: '0.5px solid rgba(0,0,0,0.07)', paddingTop: 12,
-      }}>
-        
+      {/* action button */}
+      <div className="border-t border-black/[0.07] pt-3">
         <button
           onClick={e => { e.stopPropagation(); onClick() }}
-          style={{
-            flex: 1, padding: '6px 0',
-            borderRadius: 8, fontSize: 11, cursor: 'pointer',
-            border: 'none',
-            background: '#3D1A2E', color: '#fff',
-            fontFamily: 'inherit',
-            transition: 'background 0.15s',
-          }}
-          onMouseEnter={e => (e.currentTarget.style.background = '#5a2645')}
-          onMouseLeave={e => (e.currentTarget.style.background = '#3D1A2E')}
+          className="w-full py-1.5 rounded-lg text-[11px] cursor-pointer border-none bg-[#3D1A2E] text-white font-sans transition-colors duration-150 hover:bg-[#5a2645]"
         >
           View
         </button>
